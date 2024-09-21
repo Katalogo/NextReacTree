@@ -1,4 +1,3 @@
-//if multiple children of a parent have the same fileName/pathName then only keep one of them, like a set(). and if children have the same fileName/pathName but different parent then
 import * as babelParser from "@babel/parser";
 import * as path from "path";
 import * as fs from "fs";
@@ -157,12 +156,6 @@ export class Parser {
 
   // Recursively builds the React component tree structure starting from root node
   private parser(componentTree: Tree): Tree | undefined {
-    // const fileName = this.getFileName(componentTree);
-    // if (!fileName) {
-    //   componentTree.error = "File not found.";
-    //   return;
-    // }
-
     if (componentTree.parentList.includes(componentTree.filePath)) {
       return;
     }
@@ -461,22 +454,22 @@ export class Parser {
   }
 
   // Extracts prop names from a JSX element
-  private getJSXProps(
-    astTokens: { [key: string]: any }[],
-    j: number
-  ): { [key: string]: boolean } {
-    const props: any = {};
-    while (astTokens[j].type.label !== "jsxTagEnd") {
-      if (
-        astTokens[j].type.label === "jsxName" &&
-        astTokens[j + 1].value === "="
-      ) {
-        props[astTokens[j].value] = true;
-      }
-      j += 1;
-    }
-    return props;
-  }
+  // private getJSXProps(
+  //   astTokens: { [key: string]: any }[],
+  //   j: number
+  // ): { [key: string]: boolean } {
+  //   const props: any = {};
+  //   while (astTokens[j].type.label !== "jsxTagEnd") {
+  //     if (
+  //       astTokens[j].type.label === "jsxName" &&
+  //       astTokens[j + 1].value === "="
+  //     ) {
+  //       props[astTokens[j].value] = true;
+  //     }
+  //     j += 1;
+  //   }
+  //   return props;
+  // }
 
   // Checks if current Node is connected to React-Redux Store
   private checkForRedux(astTokens: any[], importsObj: ImportObj): boolean {
